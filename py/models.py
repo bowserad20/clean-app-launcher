@@ -87,3 +87,37 @@ class SectionModel(QObject):
     def cells(self, cells):
         self._cells = cells
 
+@QmlElement
+class ConfigLoader(QObject):
+
+    @Slot()
+    def save(self):
+        self.apps.save()
+
+    @Slot(str)
+    def addSection(self, name):
+        section = SectionModel()
+        section.name = name
+        section.cells = []
+        self._apps.sections.append(section)
+
+    @Slot(QObject, str)
+    def renameSection(self, section, name):
+        i = self._apps.sections.index(section)
+        self._apps.sections[i].name = name
+
+    @Slot(QObject)
+    def removeSection(self, section):
+        self._apps.sections.remove(section)
+
+    @Slot(result=list)
+    def getSections(self):
+        return self._apps.sections
+
+    @Property(object)
+    def apps(self):
+        return self._apps
+    
+    @apps.setter
+    def apps(self, apps):
+        self._apps = apps

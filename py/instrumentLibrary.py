@@ -16,13 +16,6 @@ def handleError(url):
     print('resource failed to load',url)
     exit(1)
 
-@QmlElement
-class ConfigLoader(QObject):
-
-    @Slot()
-    def save(self):
-        apps.save()
-
 if __name__ == "__main__":
     # setup
     if ("__compiled__" in globals()):
@@ -40,7 +33,7 @@ if __name__ == "__main__":
     engine.addImportPath(os.path.join(ROOT_DIR, "qml"))
 
     apps = appsConfig(os.path.join(ROOT_DIR, "data/apps.yaml"))
-    engine.setInitialProperties({"gridSections": apps.sections})
+    engine.setInitialProperties({"gridSections": apps.sections, "apps": apps})
 
     # run
     engine.load(os.path.join(ROOT_DIR, "qml/main.qml"))

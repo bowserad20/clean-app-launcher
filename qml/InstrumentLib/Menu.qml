@@ -18,7 +18,13 @@ MenuBar {
             text: "Save"
             onTriggered: configLoader.save()
         }
-        Action { text: "New Section" } //TODO
+        Action {
+            text: "New Section" 
+            onTriggered: {
+                configLoader.addSection('test')
+                app.gridSections = configLoader.getSections()
+            }
+        } 
     }
     
     Menu {
@@ -47,6 +53,4 @@ MenuBar {
             color: Global.colors.Text
         }
     }
-
-
 }

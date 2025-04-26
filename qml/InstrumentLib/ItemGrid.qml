@@ -18,28 +18,87 @@ GridView {
     interactive: false
 
     header: 
-        Text {
-            bottomPadding: 20
-            text: grid.sectionName
-            font: Global.fonts.Title2
-            color: Global.colors.Text
+        RowLayout {
+            width: parent.width
+            Row {
+                Layout.fillWidth: true
+                RowLayout {
+                    width: parent.width
+                    Component {
+                        id: displayTitle
+                        MouseArea {
+                            height: childrenRect.height
+                            width: childrenRect.width
+                            onClicked: {
+                                titleLoader.sourceComponent = editTitle;
+                            }
+                            Text {
+                                bottomPadding: 20
+                                text: grid.sectionName
+                                font: Global.fonts.Title2
+                                color: Global.colors.Text                            
+                            }
+                        }
+                    }
+                    Component {
+                        id: editTitle
+                        TextField {
+                            id: sectionName
+                            font: Global.fonts.Title2
+                            color: Global.colors.Text
+                            text: grid.sectionName
+                            leftPadding: 0
+                            topPadding: 0
+                            bottomPadding: 20
+                            Keys.onPressed: (ev) => {
+                                if (ev.key == Qt.Key_Return) {
+                                    configLoader.renameSection(grid.section, sectionName.text);
+                                    app.gridSections = configLoader.getSections()
+                                    titleLoader.sourceComponent = displayTitle;
+                                }
+                            }
+
+                            background: Item{}
+
+                            Component.onCompleted: sectionName.forceActiveFocus();
+                        }
+                    }
+
+                    Loader {
+                        Layout.fillWidth: true
+                        id: titleLoader
+                        sourceComponent: displayTitle
+                    }
+                }
+            }
+
+            Row {
+                spacing: 8
+                Button {
+                    text: "+"
+                    horizontalPadding: 0
+                    verticalPadding: 0
+                    onClicked: { 
+                        addApplicationModal.section = section; 
+                        addApplicationModal.targetGrid = grid; 
+                        addApplicationModal.open() 
+                    }
+                    Material.background: Global.colors.Surface2
+                    font: Global.fonts.Subtitle
+                }
+
+                Button {
+                    text: "X"
+                    onClicked: { 
+                        configLoader.removeSection(grid.section)
+                        app.gridSections = configLoader.getSections()
+                    }
+                    Material.background: Global.colors.Surface2
+                    font: Global.fonts.Menu
+                }
+            }
         }
 
-        Button {
-            text: "+"
-            horizontalPadding: 0
-            verticalPadding: 0
-            anchors.right: parent.right
-            onClicked: { 
-                addApplicationModal.section = section; 
-                addApplicationModal.targetGrid = grid; 
-                addApplicationModal.open() 
-            }
-            Material.background: Global.colors.Surface2
-            font: Global.fonts.Subtitle
-        }
-        
-    
     delegate: 
         Rectangle {
             required property string cellName
@@ -107,5 +166,4 @@ GridView {
                 }
             }
         }
-    
 }

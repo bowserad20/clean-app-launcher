@@ -6,7 +6,10 @@ import InstrumentLib
 
 ApplicationWindow {
 
-    ConfigLoader{id: configLoader}
+    ConfigLoader{
+        id: configLoader
+        apps: app.apps
+    }
     Shortcut {
         sequence: StandardKey.Save
         onActivated: configLoader.save()
@@ -17,6 +20,7 @@ ApplicationWindow {
     Material.primary: Material.Red
     Material.accent: Material.Orange
     property list<SectionModel> gridSections
+    property var apps
 
     visible: true
     height: Global.height
@@ -39,6 +43,7 @@ ApplicationWindow {
             anchors.margins: 40
             anchors.topMargin: 20
             Repeater {
+                id: sectionRepeater
                 model: gridSections
                 delegate: ItemGrid {
                         required property var modelData;
