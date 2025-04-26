@@ -11,21 +11,6 @@ from configLoader import appsConfig
 # nuitka-project: --include-qt-plugins=qml
 # nuitka-project: --include-data-dir=qml=qml
 
-if ("__compiled__" in globals()):
-    ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
-else:
-    PY_DIR = os.path.abspath(os.path.dirname(__file__))
-    ROOT_DIR = os.path.dirname(PY_DIR)
-
-def getTestCells(count):
-    cells = []
-    curCell = None
-    for i in range(count):
-        curCell = CellModel()
-        curCell.cellName = 'test' + str(i)
-        cells.append(curCell)
-    return cells
-
 @Slot(str)
 def handleError(url):
     print('resource failed to load',url)
@@ -38,9 +23,14 @@ class ConfigLoader(QObject):
     def save(self):
         apps.save()
 
-
 if __name__ == "__main__":
     # setup
+    if ("__compiled__" in globals()):
+        ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
+    else:
+        PY_DIR = os.path.abspath(os.path.dirname(__file__))
+        ROOT_DIR = os.path.dirname(PY_DIR)
+
     app = QGuiApplication(sys.argv)
     font = QFont("Arial",12)
     app.setFont(font)
