@@ -27,21 +27,21 @@ MenuBar {
         } 
     }
     
-    Menu {
-        Material.roundedScale: Material.NotRounded
-        Material.foreground: Global.colors.Text
-        Material.background: Global.colors.Surface2
-        title: "View"
-        Menu {
-            Material.roundedScale: Material.NotRounded
-            Material.foreground: Global.colors.Text
-            Material.background: Global.colors.Surface2
-            title: "Tile Size"          //TODO
-            Action { text: "Small" }
-            Action { text: "Medium" }
-            Action { text: "Large" }
-        }
-    }
+    // Menu {
+    //     Material.roundedScale: Material.NotRounded
+    //     Material.foreground: Global.colors.Text
+    //     Material.background: Global.colors.Surface2
+    //     title: "View"
+    //     Menu {
+    //         Material.roundedScale: Material.NotRounded
+    //         Material.foreground: Global.colors.Text
+    //         Material.background: Global.colors.Surface2
+    //         title: "Tile Size"          //TODO
+    //         Action { text: "Small" }
+    //         Action { text: "Medium" }
+    //         Action { text: "Large" }
+    //     }
+    // }
 
     delegate: MenuBarItem {
         anchors.top: parent.top
