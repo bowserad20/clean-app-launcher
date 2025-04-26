@@ -1,11 +1,15 @@
 import yaml
 from models import *
 from pathlib import Path
+import os
 
 class appsConfig:
     def __init__(self, filePath):
         self._filePath = filePath
-        if (not(Path(filePath).is_file())):
+        directory = os.path.dirname(filePath)
+        if (not(os.path.exists(directory))):
+            os.makedirs(directory)
+        if (not(os.path.exists(filePath))):
             open(filePath, 'w').close()
 
         self._appsFile = open(filePath, 'r')
