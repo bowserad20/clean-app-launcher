@@ -1,0 +1,17 @@
+sections:
+- apps:
+  - icon: C:\dev\instrumentLibrary\assets\img\testIcon.png
+    name: Analog Lab V
+    path: C:\Program Files\Arturia\Analog Lab V\Analog Lab V.exe
+  - icon: C:\dev\instrumentLibrary\assets\img\testIcon.png
+    name: ARP 2600 V3
+    path: C:\Program Files\Arturia\ARP 2600 V3\ARP 2600 V3.exe
+  name: Section 1
+- apps:
+  - icon: C:\dev\instrumentLibrary\assets\img\testIcon.png
+    name: Analog Lab V
+    path: C:\Program Files\Arturia\Analog Lab V\Analog Lab V.exe
+  - icon: C:\dev\instrumentLibrary\assets\img\testIcon.png
+    name: ARP 2600 V3
+    path: C:\Program Files\Arturia\ARP 2600 V3\ARP 2600 V3.exe
+  name: Section 2

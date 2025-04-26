@@ -1,0 +1,5 @@
+module InstrumentLib
+ItemGrid ItemGrid.qml
+InstrumentLibMenuBar Menu.qml
+AddAppModal AddAppModal.qml
+singleton Global Global.qml 
