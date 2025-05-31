@@ -21,7 +21,7 @@ MenuBar {
         Action {
             text: "New Section" 
             onTriggered: {
-                configLoader.addSection('test')
+                configLoader.addSection(null)
                 app.gridSections = configLoader.getSections()
             }
         } 

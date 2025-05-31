@@ -1,5 +1,5 @@
 from PySide6.QtQml import QQmlApplicationEngine, QmlElement
-from PySide6.QtCore import QObject, Slot, Property
+from PySide6.QtCore import QObject, Slot, Property, QUrl
 import subprocess
 
 QML_IMPORT_NAME = "InstrumentLib"
@@ -59,11 +59,11 @@ class SectionModel(QObject):
             "apps": cellsDicts
         }
     
-    @Slot(str,str,str)
+    @Slot(str,QUrl,str)
     def addCell(self, name, path, icon):
         curCell = CellModel()
         curCell.cellName = name
-        curCell.path = path
+        curCell.path = path.toLocalFile()
         curCell.icon = icon
         self._cells.append(curCell)
 
@@ -97,7 +97,7 @@ class ConfigLoader(QObject):
     @Slot(str)
     def addSection(self, name):
         section = SectionModel()
-        section.name = name
+        section.name = name if name else f"Section {len(self._apps.sections) + 1}"
         section.cells = []
         self._apps.sections.append(section)
 
