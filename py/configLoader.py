@@ -38,7 +38,7 @@ class appsConfig:
         return cells
 
     def _getSections(self, apps):
-        if (apps == None): return
+        if (apps == None): return []
         secs = []
         curSec = None
         for sec in apps.get('sections'):
