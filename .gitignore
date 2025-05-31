@@ -1,7 +1,6 @@
 *.build/
 *.dist/
 *.onefile-build/
-assets/
 data/apps.yaml
 
 # Byte-compiled / optimized / DLL files

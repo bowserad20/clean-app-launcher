@@ -1,6 +1,6 @@
 import sys
 import os
-from PySide6.QtGui import QGuiApplication, QFont
+from PySide6.QtGui import QGuiApplication, QFont, QIcon
 from PySide6.QtQml import QQmlApplicationEngine, QmlElement
 from PySide6.QtCore import QObject, Slot
 from models import *
@@ -10,7 +10,10 @@ from configLoader import appsConfig
 # nuitka-project: --enable-plugin=pyside6
 # nuitka-project: --include-qt-plugins=qml
 # nuitka-project: --include-data-dir=qml=qml
+# nuitka-project: --include-data-dir=assets=assets
+# nuitka-project: --include-package=imageio
 # nuitka-project: --windows-console-mode=attach
+# nuitka-project: --windows-icon-from-ico=assets/appIcon.png
 
 @Slot(str)
 def handleError(url):
@@ -30,6 +33,7 @@ if __name__ == "__main__":
     app = QGuiApplication(sys.argv)
     font = QFont("Arial",12)
     app.setFont(font)
+    app.setWindowIcon(QIcon(os.path.join(ROOT_DIR, "assets/appIcon.png")))
 
     engine = QQmlApplicationEngine()
     engine.objectCreationFailed.connect(handleError)

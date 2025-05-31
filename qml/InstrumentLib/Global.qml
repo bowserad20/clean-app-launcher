@@ -3,6 +3,7 @@ import QtQuick
 import QtQuick.Controls.Material
 
 QtObject {
+    property string windowTitle: "Clean App Launcher"
     property int height: 900
     property int width: 1200
     property int cellWidth: 250

@@ -25,6 +25,7 @@ ApplicationWindow {
     visible: true
     height: Global.height
     width: Global.width
+    title: Global.windowTitle
     id: app
 
     menuBar: InstrumentLibMenuBar{}
