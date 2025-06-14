@@ -71,9 +71,9 @@ Popup {
             }
             FileDialog {
                 id: iconDialog
-                title: "Choose an executable"
+                title: "Choose an icon"
                 onAccepted: {
-                    path.text = iconDialog.selectedFile
+                    icon.text = iconDialog.selectedFile
                 }
             }
         }

@@ -116,14 +116,17 @@ GridView {
 
             Image {
                 source: Qt.resolvedUrl('file:'+icon)
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.topMargin: 20
-                width:170
-                height:170
-                fillMode: Image.PreserveAspectCrop
+                anchors.top: parent.top
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.bottom: cellNameElement.top
+                anchors.margins: 10
+                
+                fillMode: Image.PreserveAspectFit
             }    
 
             Text {
+                id: cellNameElement
                 text: cellName
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.bottom: parent.bottom

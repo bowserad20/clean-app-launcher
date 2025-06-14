@@ -59,12 +59,13 @@ class SectionModel(QObject):
             "apps": cellsDicts
         }
     
-    @Slot(str,QUrl,str)
+    @Slot(str,QUrl,QUrl)
     def addCell(self, name, path, icon):
         curCell = CellModel()
         curCell.cellName = name
-        curCell.path = path.toLocalFile()
-        curCell.icon = icon
+        print(path, icon)
+        curCell.icon = icon.toLocalFile() if icon.isLocalFile() else icon.toString()
+        curCell.path = path.toLocalFile() if path.isLocalFile() else path.toString()
         self._cells.append(curCell)
 
     @Slot(int)
