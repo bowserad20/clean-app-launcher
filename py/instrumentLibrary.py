@@ -14,6 +14,7 @@ from configLoader import appsConfig
 # nuitka-project: --include-package=imageio
 # nuitka-project: --windows-console-mode=attach
 # nuitka-project: --windows-icon-from-ico=assets/appIcon.png
+# nuitka-project: --output-dir=dist
 
 @Slot(str)
 def handleError(url):
